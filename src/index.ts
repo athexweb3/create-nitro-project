@@ -12,19 +12,26 @@ program
     .name('create-nitro-project')
     .description('Scaffold a production-grade React Native Nitro Module')
     .version('0.0.1')
-    .option('-n, --name <name>', 'Project name')
+    .argument('[name]', 'Project name')
+    .option('-n, --name <name>', 'Project name (deprecated, use argument instead)')
     .option('--android <lang>', 'Android language (kotlin/cpp)')
     .option('--ios <lang>', 'iOS language (swift/cpp)')
     .option('--addon <addons...>', 'Additional addons (macos, windows)')
     .option('--author <author>', 'Author name')
     .option('--author-url <url>', 'GitHub username or URL')
-    .option('--repo-url <url>', 'Repository URL');
+    .option('--repo-url <url>', 'Repository URL')
+    .option('--example <type>', 'Example app configuration (default/full)');
 
-program.action(async (opts) => {
+program.action(async (nameArg, opts) => {
     console.log(chalk.bold.cyan('\n🚀 Welcome to create-nitro-project!\n'));
     console.log(chalk.gray('Let\'s set up your new Nitro Module.\n'));
 
-    let { name, android, ios, addon } = opts;
+    let { name, android, ios, addon, example } = opts;
+
+    // Prefer argument over option
+    if (nameArg) {
+        name = nameArg;
+    }
 
     if (!name) {
         name = await input({
@@ -61,14 +68,14 @@ program.action(async (opts) => {
         }
     }
 
-    const exampleConfig = await select({
+    const exampleConfig = opts.example || (process.env.CI ? 'default' : await select({
         message: 'How do you want to configure the example app?',
         choices: [
             { name: 'Default (Minimal)', value: 'default' },
             { name: 'Full (Tests, Benchmarks, Navigation)', value: 'full' }
         ],
         default: 'default',
-    });
+    }));
 
     let gitName = 'Your Name';
     let gitUsername = '';
