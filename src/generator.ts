@@ -228,6 +228,18 @@ module.exports = mergeConfig(getDefaultConfig(__dirname), config);
                 "readable-stream": "^4.5.0"
             };
             await fs.writeJson(examplePkgJsonPath, examplePkg, { spaces: 2 });
+            await fs.writeJson(examplePkgJsonPath, examplePkg, { spaces: 2 });
+        }
+
+        // Patch android/settings.gradle to point to root node_modules for plugins
+        const settingsGradlePath = path.join(exampleDir, 'android', 'settings.gradle');
+        if (await fs.pathExists(settingsGradlePath)) {
+            let settingsGradle = await fs.readFile(settingsGradlePath, 'utf-8');
+            settingsGradle = settingsGradle.replace(
+                /includeBuild\('\.\.\/node_modules\/@react-native\/gradle-plugin'\)/g,
+                "includeBuild('../../../node_modules/@react-native/gradle-plugin')"
+            );
+            await fs.writeFile(settingsGradlePath, settingsGradle);
         }
 
         if (config.exampleConfig === 'full') {
