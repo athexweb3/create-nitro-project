@@ -1,0 +1,32 @@
+{
+  "$schema": "https://nitro.margelo.com/nitro.schema.json",
+  "cxxNamespace": ["{{projectNamespace}}"],
+  "ios": {
+    "iosModuleName": "{{className}}"
+  },
+  "android": {
+    "androidNamespace": ["{{projectNamespace}}"],
+    "androidCxxLibName": "{{className}}"
+  },
+  "autolinking": {
+    "{{className}}": {
+      {{#if useCpp}}
+      "cpp": "Hybrid{{className}}"
+      {{else}}
+      {{#if useSwift}}
+      "swift": "Hybrid{{className}}"{{#if useKotlin}},{{/if}}
+      {{/if}}
+      {{#if useKotlin}}
+      "kotlin": "Hybrid{{className}}"
+      {{/if}}
+      {{/if}}
+    }
+  },
+  {{#if supportWindows}}
+  "windows": {
+    "windowsModuleName": "{{className}}",
+    "windowsNamespace": "{{cxxNamespace}}"
+  },
+  {{/if}}
+  "ignorePaths": ["node_modules", "lib"]
+}

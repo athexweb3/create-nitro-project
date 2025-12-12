@@ -1,0 +1,9 @@
+node_modules/
+bun.lock
+dist/
+.DS_Store
+*.log
+.env
+
+# local test projects
+my-nitro-module

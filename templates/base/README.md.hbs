@@ -1,0 +1,134 @@
+# {{projectName}}
+
+{{description}}
+
+> A high-performance React Native module powered by [Nitro Modules](https://github.com/mrousavy/nitro).
+
+## Features
+
+- ⚡ Lightning-fast native performance with JSI
+- 🔥 Zero-copy ArrayBuffer support
+- 📦 TypeScript-first API
+- 🎯 Supports iOS & Android
+- 🛠️ Built with modern native languages ({{#if useSwift}}Swift{{else}}C++{{/if}} for iOS, {{#if
+useKotlin}}Kotlin{{else}}C++{{/if}} for Android)
+
+---
+
+## Installation
+
+### <h3>React Native <a href="#"><img src="https://reactnative.dev/img/tiny_logo.png" height="15" /></a></h3>
+
+```sh
+npm install {{projectName}}
+# or
+yarn add {{projectName}}
+# or
+bun add {{projectName}}
+```
+
+#### iOS
+
+```sh
+cd ios && pod install
+```
+
+#### Android
+
+Autolinking will handle the rest.
+
+### <h3>Expo <a href="#"><img src="https://static.expo.dev/favicon.png" height="12" /></a></h3>
+
+```sh
+expo install {{projectName}}
+expo prebuild
+```
+
+---
+
+## Usage
+
+```typescript
+import { {{className}} } from '{{projectName}}';
+
+// Example usage
+const result = {{className}}.add(2, 3);
+console.log(result); // 5
+```
+
+## API Reference
+
+### `add(a: number, b: number): number`
+
+Adds two numbers together.
+
+**Parameters:**
+- `a` (`number`) - First number
+- `b` (`number`) - Second number
+
+**Returns:** `number` - Sum of the two numbers
+
+**Example:**
+```typescript
+const sum = {{className}}.add(10, 20);
+console.log(sum); // 30
+```
+
+---
+
+## Development
+
+### Prerequisites
+
+- Node.js >= 20
+- Bun (recommended) or npm/yarn
+- **iOS:** Xcode 15+, CocoaPods
+- **Android:** Android Studio, JDK 17+
+
+### Setup
+
+```sh
+# Clone the repository
+git clone {{homepage}}.git
+cd {{projectName}}
+
+# Install dependencies
+bun install
+
+# Build the library
+cd packages/{{projectName}}
+bun run build
+
+# Run example app
+cd ../../example
+bun install
+bun run ios # or bun run android
+```
+
+### Testing
+
+```sh
+cd packages/{{projectName}}
+bun test
+```
+
+---
+
+## Contributing
+
+See the [CONTRIBUTING](CONTRIBUTING.md) guide to learn how to contribute to the repository and the development workflow.
+
+## Code of Conduct
+
+We have adopted a Code of Conduct that we expect project participants to adhere to. Please read
+[CODE_OF_CONDUCT](CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
+
+## License
+
+MIT © {{author}}
+
+---
+
+<div align="center">
+    <sub>Built with ❤️ using <a href="https://github.com/mrousavy/nitro">Nitro Modules</a></sub>
+</div>

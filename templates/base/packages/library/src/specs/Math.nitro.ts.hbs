@@ -1,0 +1,5 @@
+import { type HybridObject } from 'react-native-nitro-modules';
+
+export interface {{className}} extends HybridObject<{ ios: '{{#if useIosCpp}}c++{{else}}{{iosLang}}{{/if}}', android: '{{#if useAndroidCpp}}c++{{else}}{{androidLang}}{{/if}}' }> {
+  add(a: number, b: number): number;
+}

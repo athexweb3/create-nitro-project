@@ -1,0 +1,16 @@
+# Add bun to PATH
+export PATH="$HOME/.bun/bin:$PATH"
+
+# Run linting and formatting on staged files
+bun lint-staged
+
+{{#if useCpp}}
+# Check C++ formatting
+find packages/{{projectName}}/cpp -name "*.cpp" -o -name "*.hpp" | xargs clang-format --dry-run --Werror --style=file
+{{/if}}
+
+# Check Typescript
+bun tsc
+
+# Run prepare script
+bun --filter="{{projectName}}" prepare

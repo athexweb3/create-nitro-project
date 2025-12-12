@@ -1,0 +1,39 @@
+cmake_minimum_required(VERSION 3.10.0)
+project({{className}})
+
+set(PACKAGE_NAME {{className}})
+
+add_library(
+${PACKAGE_NAME} SHARED
+src/main/cpp/cpp-adapter.cpp
+../cpp/Hybrid{{className}}.cpp
+)
+
+# add Nitrogen specs
+include(${CMAKE_SOURCE_DIR}/../nitrogen/generated/android/{{className}}+autolinking.cmake)
+
+include_directories(
+"src/main/cpp"
+"../cpp"
+)
+
+find_library(LOG_LIB log)
+
+target_link_libraries(
+${PACKAGE_NAME}
+${LOG_LIB}
+android
+)
+
+if(ReactAndroid_VERSION_MINOR GREATER_EQUAL 76)
+target_link_libraries(
+${PACKAGE_NAME}
+ReactAndroid::reactnative
+)
+else()
+target_link_libraries(
+${PACKAGE_NAME}
+ReactAndroid::react_nativemodule_core
+ReactAndroid::turbomodulejsijni
+)
+endif()

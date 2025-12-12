@@ -1,0 +1,65 @@
+name: 🐛 Bug report
+description: Create a report to help us improve
+title: "🐛 "
+labels: [🐛 bug]
+body:
+  - type: textarea
+    attributes:
+      label: Summary
+      description: Provide a clear and concise description of the bug.
+      placeholder: I ran create-nitro-project and expected X, but Y happened.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Reproduction Steps
+      description: |
+        Please provide a minimal reproduction of the issue.
+      placeholder: |
+        1. Run `npx create-nitro-project ...`
+        2. Select option ...
+        3. See error ...
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Logs
+      description: Share the full logs from the console.
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Project Details
+      description: If the issue occurred in a generated project, please share details.
+      render: json
+      placeholder: >
+        "dependencies": {
+          "react-native": "...",
+          ...
+        }
+  - type: input
+    attributes:
+      label: create-nitro-project Version
+      description: Which version of the CLI are you using?
+      placeholder: "0.0.1"
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: Operating system
+      description: Select your operating system.
+      multiple: true
+      options:
+        - MacOS
+        - Windows
+        - Linux
+    validations:
+      required: true
+  - type: checkboxes
+    attributes:
+      label: Additional information
+      description: Please check all the boxes that apply
+      options:
+        - label: I searched for [similar issues in this repository](https://github.com/margelo/create-nitro-project/issues) and found none.
+          required: true

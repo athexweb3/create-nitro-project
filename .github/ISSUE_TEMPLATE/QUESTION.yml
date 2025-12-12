@@ -1,0 +1,26 @@
+name: 💭 Question
+description: Ask a Question about this tool
+title: "💭 "
+labels: [💭 question]
+body:
+  - type: textarea
+    attributes:
+      label: Question
+      description: Ask a question about create-nitro-project or ask for help.
+      placeholder: How do I ...?
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: create-nitro-project Version
+      description: Which version are you using?
+      placeholder: ex. 0.0.1
+    validations:
+      required: true
+  - type: checkboxes
+    attributes:
+      label: Additional information
+      description: Please check all the boxes that apply
+      options:
+        - label: I searched for similar questions [in the issues page](https://github.com/margelo/create-nitro-project/issues?q=is%3Aopen+is%3Aissue+label%3A%22💭+question%22) and found none.
+          required: true

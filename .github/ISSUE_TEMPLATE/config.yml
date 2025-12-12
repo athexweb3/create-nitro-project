@@ -1,0 +1,9 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Troubleshooting Guide
+    # TODO: Update this link once we have a troubleshooting guide
+    url: https://github.com/margelo/create-nitro-project/blob/main/README.md
+    about: Please check the README before opening an issue.
+  - name: Margelo Community Discord
+    url: https://discord.gg/6CSHz2qAvA
+    about: Discuss and chat about create-nitro-project or other Margelo tools with our team or other community members.

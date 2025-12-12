@@ -1,0 +1,28 @@
+apply plugin: "com.android.library"
+apply plugin: "org.jetbrains.kotlin.android"
+
+apply from: "../nitrogen/generated/android/{{className}}+autolinking.gradle"
+
+// Fix for prefab
+apply from: "fix-prefab.gradle"
+
+android {
+namespace "{{androidNamespace}}"
+compileSdkVersion 34
+
+defaultConfig {
+minSdkVersion 24
+targetSdkVersion 34
+}
+
+externalNativeBuild {
+cmake {
+path "CMakeLists.txt"
+}
+}
+}
+
+dependencies {
+implementation "com.facebook.react:react-native:+"
+implementation project(":react-native-nitro-modules")
+}

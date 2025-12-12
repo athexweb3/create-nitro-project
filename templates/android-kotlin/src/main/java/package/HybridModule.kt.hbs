@@ -1,0 +1,12 @@
+package {{androidPackage}}
+
+import com.margelo.nitro.core.*
+
+class Hybrid{{className}} : Hybrid{{className}}Spec() {
+  override val memorySize: Long
+    get() = 0L
+
+  override fun add(a: Double, b: Double): Double {
+    return a + b
+  }
+}

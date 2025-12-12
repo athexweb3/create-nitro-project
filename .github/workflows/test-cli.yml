@@ -1,0 +1,79 @@
+name: Test CLI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Test (${{ matrix.android }} / ${{ matrix.ios }})
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        android: [kotlin, cpp]
+        ios: [swift, cpp]
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      - name: Build CLI
+        run: |
+          bun install
+          bun run build
+
+      - name: Generate Test Project
+        run: |
+          node dist/index.js TestModule --android ${{ matrix.android }} --ios ${{ matrix.ios }}
+
+      - name: Install Dependencies
+        working-directory: TestModule
+        run: bun install
+
+      - name: Run Nitro Codegen
+        working-directory: TestModule
+        run: bun run build
+
+      - name: Build Android App
+        working-directory: TestModule/example/android
+        run: ./gradlew assembleDebug --no-daemon
+
+      - name: Install Pods
+        working-directory: TestModule/example/ios
+        run: |
+          bundle install
+          bundle exec pod install
+
+      - name: Build iOS App
+        working-directory: TestModule/example/ios
+        run: |
+          xcodebuild \
+            -workspace TestModuleExample.xcworkspace \
+            -scheme TestModuleExample \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination 'platform=iOS Simulator,name=iPhone 15' \
+            clean build \
+            CODE_SIGNING_ALLOWED=NO | xcbeautify

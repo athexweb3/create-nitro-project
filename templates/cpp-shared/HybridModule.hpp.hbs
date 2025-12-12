@@ -1,0 +1,15 @@
+#pragma once
+
+#include "Hybrid{{className}}Spec.hpp"
+
+namespace {{cxxNamespace}} {
+
+  class Hybrid{{className}} : public Hybrid{{className}}Spec {
+  public:
+    Hybrid{{className}}() : HybridObject(TAG) {}
+
+  public:
+    double add(double a, double b) override;
+  };
+
+}

@@ -1,0 +1,18 @@
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { HomeScreen } from '../HomeScreen';
+import { BenchmarksScreen } from '../benchmarks/BenchmarksScreen';
+
+const Tab = createBottomTabNavigator();
+
+export const Root: React.FC = () => {
+return (
+<NavigationContainer>
+    <Tab.Navigator initialRouteName="Home">
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Benchmarks" component={BenchmarksScreen} />
+    </Tab.Navigator>
+</NavigationContainer>
+);
+};

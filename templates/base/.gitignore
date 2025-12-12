@@ -1,0 +1,56 @@
+# OSX
+.DS_Store
+
+# VSCode
+.vscode/
+
+# Xcode
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+project.xcworkspace
+
+# Android
+.classpath
+.cxx
+.gradle
+.idea
+.project
+.settings
+local.properties
+android.iml
+
+# Node
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+.yarn/*
+package-lock.json
+**/*.bun
+
+# Build
+lib/
+*.apk
+*.aar
+*.aab
+bin/
+gen/
+out/
+build/
+nitro.json
+nitrogen/generated/
+tsconfig.tsbuildinfo

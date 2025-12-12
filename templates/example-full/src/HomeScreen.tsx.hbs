@@ -1,0 +1,38 @@
+import React, { useCallback, useMemo } from 'react';
+import { StyleSheet, Text, View, Alert } from 'react-native';
+import { {{className}} } from '{{projectName}}';
+
+export function HomeScreen() {
+const result = useMemo(() => {
+try {
+return {{className}}.multiply(3, 7);
+} catch (e) {
+return e instanceof Error ? e.message : 'Error';
+}
+}, []);
+
+return (
+<View style={styles.container}>
+    <Text style={styles.text}>{{projectName}} Example</Text>
+    <Text style={styles.result}>Result: {result}</Text>
+</View>
+);
+}
+
+const styles = StyleSheet.create({
+container: {
+flex: 1,
+alignItems: 'center',
+justifyContent: 'center',
+backgroundColor: '#white'
+},
+text: {
+fontSize: 20,
+fontWeight: 'bold',
+marginBottom: 20
+},
+result: {
+fontSize: 16,
+marginBottom: 20
+}
+});

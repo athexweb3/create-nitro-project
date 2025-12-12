@@ -1,0 +1,67 @@
+name: 🐛 Bug report
+description: Create a report to help us improve
+title: "🐛 "
+labels: [🐛 bug]
+body:
+  - type: textarea
+    attributes:
+      label: Summary
+      description: Provide a clear and concise description of the bug.
+      placeholder: I expected X, but Y happened.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Reproduction Steps
+      description: |
+        Please provide a minimal reproduction of the issue.
+      placeholder: |
+        1. Call function `...`
+        2. With arguments `...`
+        3. See error `...`
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Logs
+      description: Share the full logs from the console.
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Environment
+      description: Please share your environment details.
+      render: json
+      placeholder: >
+        "dependencies": {
+          "react-native": "...",
+          "{{projectName}}": "...",
+        }
+  - type: input
+    attributes:
+      label: {{projectName}} Version
+      description: Which version of {{projectName}} are you using?
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: Operating system
+      description: Select your operating system.
+      multiple: true
+      options:
+        - MacOS
+        - Windows
+        - Linux
+        - Android
+        - iOS
+    validations:
+      required: true
+  - type: checkboxes
+    attributes:
+      label: Additional information
+      description: Please check all the boxes that apply
+      options:
+        - label: I searched for [similar issues in this repository]({{homepage}}/issues) and found none.
+          required: true
