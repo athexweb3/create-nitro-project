@@ -54,7 +54,7 @@ jobs:
 
       - name: Run Nitro Codegen
         working-directory: TestModule
-        run: bun run build
+        run: bun run specs
 
       - name: Build Android App
         working-directory: TestModule/example/android
