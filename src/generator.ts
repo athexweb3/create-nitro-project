@@ -228,7 +228,6 @@ module.exports = mergeConfig(getDefaultConfig(__dirname), config);
                 "readable-stream": "^4.5.0"
             };
             await fs.writeJson(examplePkgJsonPath, examplePkg, { spaces: 2 });
-            await fs.writeJson(examplePkgJsonPath, examplePkg, { spaces: 2 });
         }
 
         // Patch android/settings.gradle to point to root node_modules for plugins
@@ -240,6 +239,17 @@ module.exports = mergeConfig(getDefaultConfig(__dirname), config);
                 "includeBuild('../../node_modules/@react-native/gradle-plugin')"
             );
             await fs.writeFile(settingsGradlePath, settingsGradle);
+        }
+
+        // Patch android/gradle/wrapper/gradle-wrapper.properties to use Gradle 8.10.2 (Gradle 9 causes Kotlin mismatch)
+        const gradleWrapperPropertiesPath = path.join(exampleDir, 'android', 'gradle', 'wrapper', 'gradle-wrapper.properties');
+        if (await fs.pathExists(gradleWrapperPropertiesPath)) {
+            let gradleWrapper = await fs.readFile(gradleWrapperPropertiesPath, 'utf-8');
+            gradleWrapper = gradleWrapper.replace(
+                /distributionUrl=https\\:\/\/services\.gradle\.org\/distributions\/gradle-[0-9\.]+-bin\.zip/,
+                "distributionUrl=https\\://services.gradle.org/distributions/gradle-8.10.2-bin.zip"
+            );
+            await fs.writeFile(gradleWrapperPropertiesPath, gradleWrapper);
         }
 
         if (config.exampleConfig === 'full') {
