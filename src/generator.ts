@@ -350,6 +350,7 @@ export default App;
     } catch (error) {
         spinner.fail(chalk.red('Failed to create project.'));
         console.error(error);
+        process.exit(1);
     }
 }
 

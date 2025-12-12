@@ -15,7 +15,10 @@ program
     .option('-n, --name <name>', 'Project name')
     .option('--android <lang>', 'Android language (kotlin/cpp)')
     .option('--ios <lang>', 'iOS language (swift/cpp)')
-    .option('--addon <addons...>', 'Additional addons (macos, windows)');
+    .option('--addon <addons...>', 'Additional addons (macos, windows)')
+    .option('--author <author>', 'Author name')
+    .option('--author-url <url>', 'GitHub username or URL')
+    .option('--repo-url <url>', 'Repository URL');
 
 program.action(async (opts) => {
     console.log(chalk.bold.cyan('\n🚀 Welcome to create-nitro-project!\n'));
@@ -48,10 +51,14 @@ program.action(async (opts) => {
     }
 
     if (!addon) {
-        addon = await checkbox({
-            message: 'Select additional platforms to support (addons):',
-            choices: [{ name: 'macOS', value: 'macos' }, { name: 'Windows', value: 'windows' }],
-        });
+        if (process.env.CI) {
+            addon = [];
+        } else {
+            addon = await checkbox({
+                message: 'Select additional platforms to support (addons):',
+                choices: [{ name: 'macOS', value: 'macos' }, { name: 'Windows', value: 'windows' }],
+            });
+        }
     }
 
     const exampleConfig = await select({
@@ -73,17 +80,17 @@ program.action(async (opts) => {
         gitUsername = gitEmail.split('@')[0];
     } catch (e) { }
 
-    const authorName = await input({
+    const authorName = opts.author || await input({
         message: 'Author name:',
         default: gitName,
     });
 
-    const authorGithub = await input({
+    const authorGithub = opts.authorUrl || await input({
         message: 'GitHub username:',
         default: gitUsername,
     });
 
-    const homepage = await input({
+    const homepage = opts.repoUrl || await input({
         message: 'GitHub repository URL:',
         default: authorGithub ? `https://github.com/${authorGithub}/${name}` : `https://github.com/username/${name}`,
     });

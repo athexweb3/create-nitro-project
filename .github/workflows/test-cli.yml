@@ -46,7 +46,7 @@ jobs:
 
       - name: Generate Test Project
         run: |
-          node dist/index.js TestModule --android ${{ matrix.android }} --ios ${{ matrix.ios }}
+          node dist/index.js TestModule --android ${{ matrix.android }} --ios ${{ matrix.ios }} --author "CI User" --author-url "ci-user" --repo-url "https://github.com/test/repo"
 
       - name: Install Dependencies
         working-directory: TestModule

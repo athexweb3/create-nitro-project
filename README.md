@@ -1,109 +1,105 @@
-# 🚀 create-nitro-project
+# create-nitro-project
+
+[![Test CLI](https://github.com/athexweb3/create-nitro-project/actions/workflows/test-cli.yml/badge.svg)](https://github.com/athexweb3/create-nitro-project/actions/workflows/test-cli.yml)
 
 > The fastest way to scaffold production-grade React Native Nitro Modules.
 
-Welcome to **create-nitro-project**! This CLI automates the setup of high-performance, type-safe native modules using [Nitro](https://nitro.margelo.com), so you can skip the boilerplate and focus on building features. ⚡️
+Hey there! Welcome to **create-nitro-project**. 
 
-## ⚡️ Why Nitro?
+If you're looking to build high-performance native modules for React Native without the headache, you're in the right place. This CLI handles all the boring setup so you can focus on the fun part—writing C++, Swift, or Kotlin code that runs blazing fast.
 
-Nitro Modules represent the next evolution in React Native native modules:
-- **Zero Overhead**: Built on JSI for synchronous, bridge-less communication.
-- **Type-Safe**: End-to-end type safety from TypeScript to C++, Swift, and Kotlin.
-- **Modern**: No old-school bridge, no unecessary complexity.
+## Why Nitro?
 
-## ✨ Features
+Nitro Modules are the next big thing. Seriously.
+- **Zero Overhead**: No bridge. Just direct, synchronous calls via JSI.
+- **Type-Safe**: We generate bindings for you. TypeScript <-> Native. No guesswork.
+- **Modern**: Built for the future of React Native (Bridge-less).
 
-- **🚀 Instant Setup**: scaffolding a fully configured monorepo in seconds.
-- **🌐 Cross-Platform**: First-class support for **Android**, **iOS**, **macOS**, and **Windows**.
-- **🛠️ Multi-Language**:
-  - **Android**: Kotlin (default) or C++.
-  - **iOS**: Swift (default) or C++.
-- **📐 Smart Templates**:
-  - **Minimal**: A lightweight starting point.
-  - **Full**: Includes a test suite, benchmarks, and navigation.
-- **💎 Premium DX**:
-  - **Monorepo**: Built with Bun/NPM workspaces.
-  - **Linting**: Pre-configured **ESLint** and **Prettier**.
-  - **Git Hooks**: **Husky** set up for pre-commit checks.
-  - **Autolinking**: Automatic Podspec generation with PascalCase naming.
+## Features
 
-## 📦 Prerequisites
+- **Instant Scaffolding**: One command, and you have a full monorepo ready to go.
+- **Cross-Platform**: Android, iOS, macOS, Windows? We got you.
+- **Your Language, Your Choice**:
+  - **Android**: Love Kotlin? Go for it. Need raw C++ power? We support that too.
+  - **iOS**: Swift by default, but fully C++ compatible.
+- **Premium DX**:
+  - **Monorepo**: Smart setup with Bun/NPM workspaces.
+  - **Linting**: Pre-configured ESLint & Prettier. No bike-shedding.
+  - **Example App**: Comes with a working app to test your module immediately.
 
-Before you start, make sure you have:
+## Prerequisites
+
+Just make sure you have the basics:
 - **Node.js 18+** or **Bun 1.0+**
-- **Xcode** (for iOS/macOS)
-- **Android Studio** (for Android)
+- **Xcode** (for iOS/macOS dev)
+- **Android Studio** (for Android dev)
 
-## 🛠 Usage
+## Usage
 
-Run the CLI directly with `npx` or `bun`:
+We made this super easy. Just run:
 
 ```bash
 npx create-nitro-project@latest
-# or
+# or if you prefer Bun (we do!)
 bun create nitro-project
 ```
 
 ### Interactive Mode
-The CLI will guide you through the setup:
-1. **Project Name**: Name your module.
-2. **Languages**: Choose Kotlin/C++ and Swift/C++.
-3. **Addons**: Select extra platforms like macOS or Windows.
-4. **Example App**: Choose between a minimal or full example app.
+The CLI is friendly! It will ask you a few questions:
+1. **Name**: What do you want to call your cool module?
+2. **Languages**: Kotlin or C++? Swift or C++?
+3. **Addons**: Need macOS support? Just check the box.
 
-### Command Line Arguments
-Skip the prompts by passing arguments directly:
+### For CI / Robots
+Want to skip the chat? You can pass arguments directly:
 
 ```bash
 npx create-nitro-project MyFastModule \
   --android kotlin \
   --ios swift \
-  --addon macos windows
+  --addon macos windows \
+  --author "Your Name" \
+  --author-url "https://github.com/you" \
+  --repo-url "https://github.com/you/repo"
 ```
 
-**Options:**
-- `-n, --name <name>`: Project name
-- `--android <lang>`: `kotlin` or `cpp`
-- `--ios <lang>`: `swift` or `cpp`
-- `--addon <list>`: Space-separated list of addons (e.g., `macos windows`)
+## What Do You Get?
 
-## 📂 Project Structure
-
-Your project is set up as a scalable monorepo:
+A clean, modern monorepo structure:
 
 ```
 MyFastModule/
 ├── packages/
-│   └── my-fast-module/       # 📦 Your Nitro Module code
-│       ├── src/              # TypeScript / C++ source
-│       ├── android/          # Native Android code
-│       ├── ios/              # Native iOS code
+│   └── my-fast-module/       # Here is your code!
+│       ├── src/              # TypeScript specs
+│       ├── android/          # Native Android implementation
+│       ├── ios/              # Native iOS implementation
 │       └── nitro.json        # Generator config
-├── example/                  # 📱 Runnable React Native app
-├── node_modules/             # Shared dependencies
+├── example/                  # Run this to test your changes
+├── node_modules/             # Dependencies
 └── package.json              # Workspace root
 ```
 
-## 🚀 Workflow
+## How to Develop
 
 1. **Define your API** in `src/specs/MyModule.nitro.ts`.
-2. **Generate bindings** by running:
+2. **Generate bindings**:
    ```bash
    bun run build
    ```
-3. **Implement the native logic** in `android/` and `ios/`.
-4. **Test it** in the example app:
+3. **Write Native Code**: Implement the interface in `android/` and `ios/`.
+4. **Run the Example**:
    ```bash
    bun run example start
    ```
 
-## 👏 Acknowledgements
+## Acknowledgements
 
-Fully inspired by the [react-native-quick-crypto](https://github.com/margelo/react-native-quick-crypto) structure which is maintained by [boorad](https://github.com/boorad).
+Huge shoutout to [margelo/react-native-quick-crypto](https://github.com/margelo/react-native-quick-crypto) for the inspiration and [boorad](https://github.com/boorad) for the groundwork.
 
-## 📄 License
+## License
 
 MIT © [Athex Web3](https://github.com/athexweb3)
 
 ---
-*Built with ❤️ for the React Native community.*
+*Built with love for the React Native community.*
