@@ -228,7 +228,6 @@ module.exports = mergeConfig(getDefaultConfig(__dirname), config);
                 "readable-stream": "^4.5.0"
             };
             await fs.writeJson(examplePkgJsonPath, examplePkg, { spaces: 2 });
-            await fs.writeJson(examplePkgJsonPath, examplePkg, { spaces: 2 });
         }
 
         // Patch android/settings.gradle to point to root node_modules for plugins
