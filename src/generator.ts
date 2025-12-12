@@ -236,8 +236,8 @@ module.exports = mergeConfig(getDefaultConfig(__dirname), config);
         if (await fs.pathExists(settingsGradlePath)) {
             let settingsGradle = await fs.readFile(settingsGradlePath, 'utf-8');
             settingsGradle = settingsGradle.replace(
-                /includeBuild\('\.\.\/node_modules\/@react-native\/gradle-plugin'\)/g,
-                "includeBuild('../../../node_modules/@react-native/gradle-plugin')"
+                /includeBuild\(['"]\.\.\/node_modules\/@react-native\/gradle-plugin['"]\)/g,
+                "includeBuild('../../node_modules/@react-native/gradle-plugin')"
             );
             await fs.writeFile(settingsGradlePath, settingsGradle);
         }
