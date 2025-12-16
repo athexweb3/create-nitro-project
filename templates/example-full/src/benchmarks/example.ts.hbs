@@ -1,0 +1,21 @@
+import { Bench } from 'tinybench';
+import { {{className}} } from '{{projectName}}';
+import type { BenchFn } from '../types/benchmarks';
+
+const exampleBench: BenchFn = async () => {
+const b = new Bench();
+
+b.add('JS Add', () => {
+const res = 5 + 7;
+if (res !== 12) throw new Error('Result is not 12');
+});
+
+b.add('Native Add ({{className}})', () => {
+const res = {{className}}.add(5, 7);
+if (res !== 12) throw new Error('Result is not 12');
+});
+
+return b;
+};
+
+export default [exampleBench];
