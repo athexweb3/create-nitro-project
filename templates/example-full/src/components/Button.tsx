@@ -1,30 +1,43 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, TouchableOpacityProps } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { colors } from '../styles/colors';
 
-interface ButtonProps extends TouchableOpacityProps {
-    title: string;
-}
+type ButtonProps = {
+  title: string;
+  onPress: () => void;
+  color?: string;
+  testID?: string;
+};
 
-export function Button({ title, style, ...props }: ButtonProps) {
-    return (
-        <TouchableOpacity style={[styles.button, style]} {...props}>
-            <Text style={styles.text}>{title}</Text>
-        </TouchableOpacity>
-    );
-}
+export const Button: React.FC<ButtonProps> = ({
+  title,
+  onPress,
+  color = 'blue',
+  testID,
+}: ButtonProps) => {
+  return (
+    <View>
+      <TouchableOpacity
+        style={[styles.container, { backgroundColor: colors[color] }]}
+        onPress={onPress}
+        testID={testID}
+      >
+        <Text style={styles.label}>{title}</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-    button: {
-        backgroundColor: '#007AFF',
-        paddingVertical: 12,
-        paddingHorizontal: 20,
-        borderRadius: 8,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    text: {
-        color: 'white',
-        fontSize: 16,
-        fontWeight: '600',
-    },
+  container: {
+    padding: 10,
+    borderRadius: 5,
+    alignContent: 'center',
+    justifyContent: 'center',
+    minWidth: 100,
+  },
+  label: {
+    color: colors.white,
+    alignSelf: 'center',
+  },
 });

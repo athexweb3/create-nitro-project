@@ -225,7 +225,9 @@ module.exports = mergeConfig(getDefaultConfig(__dirname), config);
             examplePkg.devDependencies = {
                 ...examplePkg.devDependencies,
                 "babel-plugin-module-resolver": "^5.0.0",
-                "readable-stream": "^4.5.0"
+                "readable-stream": "^4.5.0",
+                "@babel/plugin-transform-class-static-block": "^7.25.0",
+                "@babel/preset-typescript": "^7.25.0"
             };
             await fs.writeJson(examplePkgJsonPath, examplePkg, { spaces: 2 });
             await fs.writeJson(examplePkgJsonPath, examplePkg, { spaces: 2 });
@@ -265,7 +267,7 @@ module.exports = mergeConfig(getDefaultConfig(__dirname), config);
                 };
                 examplePkg.scripts = {
                     ...examplePkg.scripts,
-                    "pods": "pod-install ios"
+                    "pods": "cd ios && pod install && cd .."
                 };
                 await fs.writeJson(examplePkgJsonPath, examplePkg, { spaces: 2 });
             }
